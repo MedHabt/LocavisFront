@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 import { LoginPayload } from '../../../model/login-payload';
 import { AuthService } from '../../../services/auth/auth.service';
 
@@ -13,8 +14,13 @@ export class LoginComponent implements OnInit {
 
   loginForm : FormGroup;
   loginPayload : LoginPayload;
+  submitted = false;
+  errorsMessage:string;
 
-  constructor(private authService : AuthService) {
+  constructor(private authService : AuthService, private router : Router) {
+   }
+
+  ngOnInit(): void {
     this.loginForm = new FormGroup({
       username : new FormControl(),
       password : new FormControl()
@@ -24,9 +30,14 @@ export class LoginComponent implements OnInit {
       username : '',
       password : ''
      }
-   }
+  }
 
-  ngOnInit(): void {
+  // convenience getter for easy access to form fields
+  get f() { return this.loginForm.controls; }
+
+  onReset() {
+    this.submitted = false;
+    this.loginForm.reset();
   }
 
   onSubmit() {
@@ -37,9 +48,14 @@ export class LoginComponent implements OnInit {
     this.authService.login(this.loginPayload).subscribe(data => {
       if(data){
         console.log('login success');
+        this.router.navigateByUrl('/home');
       } else {
         console.log("login Failed");
       }
-    })
+    },error => {
+      console.log('register failed');
+
+      this.errorsMessage = error.error.message;
+    });
   }
 }

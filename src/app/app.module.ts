@@ -34,7 +34,9 @@ import { HomeComponent } from './pages/home/home.component';
       {path: 'register', component: RegisterComponent},
       {path: 'register-success', component: RegisterSuccessComponent},
       //Login Paths
-      {path: 'login', component: LoginComponent}
+      {path: 'login', component: LoginComponent},
+      //Home Paths
+      {path: 'home', component: HomeComponent}
 
     ])
   ],
