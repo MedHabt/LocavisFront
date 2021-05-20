@@ -28,6 +28,14 @@ export class AuthService {
     }));
   }
 
+  forgivenPassword(emailForgivenCompte: string): Observable<any>{
+    return this.httpClient.get(this.url + 'forgivenPassword/'+emailForgivenCompte, );
+  }
+
+  changePassword(registerPlayload: RegisterPlayload): Observable<any>{
+    return this.httpClient.post(this.url + 'changePassword',registerPlayload);
+  }
+
   handleError(err){
     return throwError(err);
   }

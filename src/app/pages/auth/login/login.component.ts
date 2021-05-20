@@ -15,6 +15,7 @@ export class LoginComponent implements OnInit {
   loginForm : FormGroup;
   loginPayload : LoginPayload;
   submitted = false;
+  //message error api
   errorsMessage:string;
 
   constructor(private authService : AuthService, private router : Router) {
@@ -22,12 +23,12 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.loginForm = new FormGroup({
-      username : new FormControl(),
+      email : new FormControl(),
       password : new FormControl()
     });
 
     this.loginPayload = {
-      username : '',
+      email : '',
       password : ''
      }
   }
@@ -40,10 +41,14 @@ export class LoginComponent implements OnInit {
     this.loginForm.reset();
   }
 
+  onRedirectRegistration(){
+    this.router.navigateByUrl('/register');
+  }
+
   onSubmit() {
-    this.loginPayload.username = this.loginForm.get('username').value;
+    this.loginPayload.email = this.loginForm.get('email').value;
     this.loginPayload.password = this.loginForm.get('password').value;
-    console.log("loginPayload : "+this.loginPayload.password+" + "+this.loginPayload.username);
+    console.log("loginPayload : "+this.loginPayload.password+" + "+this.loginPayload.email);
     
     this.authService.login(this.loginPayload).subscribe(data => {
       if(data){

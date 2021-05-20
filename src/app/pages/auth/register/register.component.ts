@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { RegisterPlayload } from '../../../model/register-playload';
 import { AuthService } from '../../../services/auth/auth.service';
@@ -30,7 +30,7 @@ export class RegisterComponent implements OnInit {
         email: ['', Validators.required],
         //lastName: ['', Validators.required],
         password: ['', [Validators.required, Validators.minLength(6)]],
-        confirmPassword: ['', Validators.required],
+        confirmPassword: ['', [Validators.required, Validators.minLength(6)]],
         acceptTerms: [false, Validators.requiredTrue]
         /*username: '',
         email: '',
