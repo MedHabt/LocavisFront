@@ -1,4 +1,4 @@
 export class LoginPayload {
-    username : string;
+    email : string;
     password : string;
 }

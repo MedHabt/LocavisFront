@@ -12,6 +12,8 @@ import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { Ng2Webstorage } from 'ngx-webstorage';
 import { HomeComponent } from './pages/home/home.component';
+import { ForgivenPasswordEmailComponent } from './pages/auth/forgivenPassword/forgiven-password-email/forgiven-password-email.component';
+import { ChangePasswordComponent } from './pages/auth/forgivenPassword/change-password/change-password.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,9 @@ import { HomeComponent } from './pages/home/home.component';
     RegisterComponent,
     LoginComponent,
     RegisterSuccessComponent,
-    HomeComponent
+    HomeComponent,
+    ForgivenPasswordEmailComponent,
+    ChangePasswordComponent
   ],
   imports: [
     BrowserModule,
@@ -34,8 +38,12 @@ import { HomeComponent } from './pages/home/home.component';
       {path: 'register', component: RegisterComponent},
       {path: 'register-success', component: RegisterSuccessComponent},
       //Login Paths
-      {path: 'login', component: LoginComponent}
-
+      {path: 'login', component: LoginComponent},
+      //Home Paths
+      {path: 'home', component: HomeComponent},
+      //Forgiven Passwords Paths
+      {path: 'forgivenPasswordEmail', component:ForgivenPasswordEmailComponent},
+      {path: 'changePassword/:email', component: ChangePasswordComponent}
     ])
   ],
   providers: [],
